@@ -2,7 +2,7 @@
 
 ### Requirements
 - #### Laravel 7.x
-- #### PHP 5.6+
+- #### PHP 7.x+
 - #### composer
 
 ## How to Use :
