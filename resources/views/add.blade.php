@@ -14,9 +14,7 @@
         <label for="cont"><h6>Countries</h6></label>
         <select class="form-control form-control-md" name="Country"id="cont">
         <option value="">Select a Country</option>
-        @foreach ($covid->Countries as $item)
-        <option value="{{$item->Country}}" id={{$stripped = str_replace(' ', '',$item->Country )}}>{{$item->Country}}</option> 
-        @endforeach
+   
     </select>
 
     <div class="container-xl mt-3" id="form">
@@ -120,9 +118,49 @@
 
 <script>
 
-let arrayOfCountriesCovid = {!!json_encode($covid->Countries)!!};
+let arrayOfCountriesCovid = {!!json_encode($covid)!!};
 let arrayOfCountriesPopulation ={!!json_encode($population)!!};
+let arrayUsed = {!!json_encode($used)!!};
 let select = document.getElementById('cont');
+
+console.log(arrayUsed)
+
+window.addEventListener('load',function(){
+  arrayOfCountriesCovid.forEach(element => {
+    
+    var flag = true;
+
+    for (let index = 0; index < arrayUsed.length; index++) {
+      if( element['CountryCode'] == arrayUsed[index]){
+        flag = false;
+        break;
+        
+      }
+    }
+
+    if(flag){
+      select.innerHTML+= `<option value= "${element['Country']}" id=${ element['Country'].replace(/\s+/g, '')} >${element['Country']}</option>`
+    }
+
+  });
+
+  // foreach ($covid as $item) {
+  //         $flag =true;
+  //         for ($i = 0; $i < count($used); $i++){
+          
+  //           if ($item->CountryCode == $used[$i]){
+  //             $flag = false;
+  //              break;
+  //           }
+
+  //       }
+  //       if($flag){
+  //       echo"  ";
+  //       }
+
+  //       }
+
+});
 
 
 
@@ -132,7 +170,6 @@ select.addEventListener('change',()=>{
   let selectedCountry = select.options[select.selectedIndex].id;
 
   console.log(selectedCountry);
-
   let TotalConfiremed = document.getElementById('TotalConfirmed');
   console.log(TotalConfiremed);
   let NewConfiremed = document.getElementById('NewConfirmed'); 

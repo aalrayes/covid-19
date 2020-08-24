@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\countries;
 use App\covids;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Http;
@@ -38,12 +39,16 @@ class CovidController extends Controller
    }
 
    public function create(){
-    return view("add",
+
+    $covidAPI =json_decode(Http::get("https://api.covid19api.com/summary"))->Countries;
+    $countries =json_decode(file_get_contents(public_path('assets/countrys-by-population.json')));
+    $covid=covids::select('CountryCode')->get()->toArray();
+    $flat = Arr::flatten($covid);
     
-    ["covid"=> json_decode(Http::get("https://api.covid19api.com/summary")),
-     "population" => json_decode(file_get_contents(public_path('assets/countrys-by-population.json')))
-    
-    ]);
+
+    //$arrCountries=array_diff_assoc($a1,$a2);
+   
+    return view("add", ["covid"=> $covidAPI, "population" =>$countries , 'used' =>$flat]);
    }
 
    public function update ($code)
@@ -106,11 +111,5 @@ class CovidController extends Controller
      return redirect('/');
    }
     
-   public function delete (Request $request, $country){
-    $temp = covids::findOrFail($country);
-    $temp -> delete();
-
-    return 204;
-   }
-
+  
 }
