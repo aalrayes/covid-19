@@ -45,7 +45,7 @@
 
           <div class="form-group mt-3">
             <label for="cd"><h6>Total confirmed </h6></label>
-            <input type="text" class="form-control" name="TotalConfirmed" id="TotalConfirmed" aria-describedby="helpId" placeholder="" readonly value="" required>
+            <input type="text" class="form-control" name="TotalConfirmed" id="TotalConfirmed" aria-describedby="helpId" placeholder=""  value="" required readonly>
             
           </div>
 
@@ -54,7 +54,7 @@
 
           <div class="form-group mt-3">
             <label for="cd"><h6>New confirmed </h6></label>
-            <input type="text" class="form-control" name="NewConfirmed" id="NewConfirmed" aria-describedby="helpId" placeholder="" readonly value="" required>
+            <input type="text" class="form-control" name="NewConfirmed" id="NewConfirmed" aria-describedby="helpId" placeholder=""  value="" required readonly>
             
           </div>
 
@@ -67,7 +67,7 @@
 
           <div class="form-group mt-3">
             <label for="cd"><h6>Total recovered </h6></label>
-            <input type="text" class="form-control" name="TotalRecovered" id="TotalRecovered" aria-describedby="helpId" placeholder="" readonly value="" required>
+            <input type="text" class="form-control" name="TotalRecovered" id="TotalRecovered" aria-describedby="helpId" placeholder=""  value="" required readonly>
           </div>
 
         </div>
@@ -77,7 +77,7 @@
       
       <div class="form-group mt-3">
         <label for="cd"><h6>New recovered</h6></label>
-        <input type="text" class="form-control" name="NewRecovered" id="NewRecovered" aria-describedby="helpId" placeholder="" readonly value="" required>
+        <input type="text" class="form-control" name="NewRecovered" id="NewRecovered" aria-describedby="helpId" placeholder=""  value="" required readonly>
       </div>
 
         </div>
@@ -89,14 +89,14 @@
 
           <div class="form-group mt-3">
             <label for="cd"><h6>Total deaths</h6></label>
-            <input type="text" class="form-control" name="TotalDeaths" id="TotalDeaths" aria-describedby="helpId" placeholder="" readonly value="" required>
+            <input type="text" class="form-control" name="TotalDeaths" id="TotalDeaths" aria-describedby="helpId" placeholder=""  value="" required readonly>
           </div>
 
         </div>
         <div class=" col-6">
           <div class="form-group mt-3">
             <label for="cd"><h6>New deaths</h6></label>
-            <input type="text" class="form-control" name="NewDeaths" id="NewDeaths" aria-describedby="helpId" placeholder="" readonly value="" required>
+            <input type="text" class="form-control" name="NewDeaths" id="NewDeaths" aria-describedby="helpId" placeholder=""  value="" required readonly>
             
           </div>
         </div>
@@ -164,7 +164,6 @@ window.addEventListener('load',function(){
 
 
 
-
 select.addEventListener('change',()=>{
 
   let selectedCountry = select.options[select.selectedIndex].id;
@@ -219,17 +218,17 @@ select.addEventListener('change',()=>{
     //console.log(Population.vlaue);
     CountryCode.value = cases.CountryCode;
     //console.log(CountryCode.vlaue);
-    TotalConfiremed.value = cases.TotalConfirmed;
-    //console.log(TotalConfiremed.vlaue);
-    NewConfiremed.value =cases.NewConfirmed;
-    //console.log(Population.vlaue);
-    TotalRecovered.value =cases.TotalRecovered;
-    //console.log(Population.vlaue);
-    NewRecovered.value = cases.NewRecovered;
-    //console.log(Population.vlaue);
-    TotalDeaths.value = cases.TotalDeaths;
-    //console.log(Population.vlaue);
-    NewDeaths.value = cases.NewDeaths;
+     TotalConfiremed.value = cases.TotalConfirmed;
+     //console.log(TotalConfiremed.vlaue);
+     NewConfiremed.value =cases.NewConfirmed;
+    // //console.log(Population.vlaue);
+     TotalRecovered.value =cases.TotalRecovered;
+    // //console.log(Population.vlaue);
+     NewRecovered.value = cases.NewRecovered;
+    // //console.log(Population.vlaue);
+     TotalDeaths.value = cases.TotalDeaths;
+    // //console.log(Population.vlaue);
+     NewDeaths.value = cases.NewDeaths;
 
    //let form = document.getElementById('form');
    

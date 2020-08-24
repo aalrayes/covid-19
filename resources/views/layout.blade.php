@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -17,6 +16,7 @@
 <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
 <link rel="icon" href="/assets/virus.png" type="image/icon type">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <style>
 
@@ -34,9 +34,53 @@ body {
 display:none;
 }
 
+
+.icon-duotone {
+  position: relative;
+  padding-left: 1.25em; /* make space for the width of the absolutely positioned icon */
+}
+
+/* Step 2: Set the font-family and font-weight for this style */
+.icon-duotone::before,
+.icon-duotone::after {
+  font-family: "Font Awesome 5 Duotone";
+  font-weight: 900;
+
+  /* position both layers of the icon to the left, set our fixed-width width, horizontally center layers, and then vertically align them so they flex with different line heights */
+  position: absolute;
+  right:0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25em;
+  text-align: center;
+}
+
+/* Step 3: Set the default opacity levels and colors for each layer */
+.icon-duotone::before {
+  color: var(--fa-primary-color, inherit);
+  opacity: 1;
+  opacity: var(--fa-primary-opacity, 1.0);
+}
+
+.icon-duotone::after {
+  color: var(--fa-secondary-color, inherit);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+/* Step 4: Reference Individual Icon's Layers */
+.icon-sort::before {
+  content: "\f884";
+}
+
+.icon-sort::after {
+  content: "\f161";
+}
+
+
 th{
 	color: rgb(22, 21, 21);
-	background-color: #F7F8FA;;
+	background-color: #F7F8FA;
+	
 }
 .table-wrapper {
 	background: #fff;
@@ -99,15 +143,48 @@ table.table-striped.table-hover tbody tr:hover {
 	background: #f5f5f5;
 }
 table.table th i {
-	font-size: 13px;
-	margin: 0 5px;
+	font-size: 17px;
+	float: right;
+	padding-right: 5px; 
 	cursor: pointer;
 }
 table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 22px;
 	margin: 0 5px;
+	
 }
+table.table td:last-child{
+	opacity: 0.9;
+	font-size: 22px;
+	margin: 0 5px;
+	border-right:1px solid grey: 
+	
+}
+table.table td {
+	margin: 10px;
+	border:1px solid gray;
+	border-right: none;	
+	border-left: none; 
+}
+table.table td h6{
+	padding: 3px 7px;
+	border-left:1px solid #EDEFF4;
+	
+}
+table.table td:first-child h6{
+	padding: 3px 7px;
+	border-left:none;
+	
+}
+table.table td:first-child{
+	padding: 3px 7px;
+	border-left:1px solid #EDEFF4;
+}
+table.table td:last-child{
+	padding: 3px 7px;
+	border-right:1px solid #EDEFF4;
+}	
 table.table td a {
 	font-weight: bold;
 	color: #566787;
@@ -115,6 +192,7 @@ table.table td a {
 	text-decoration: none;
 	outline: none !important;
 }
+
 table.table td a:hover {
 	color: #2196F3;
 }
@@ -146,7 +224,7 @@ table.table .avatar {
 <nav class="navbar navbar-light bg-light">
 	<a class="navbar-brand" href="/">
 	  <img src="/assets/virus.png" width="50" height="50" alt="" loading="lazy">
-	  <span class="text-success">Covid-19 Dashboard</span>
+	  <span class="text-success">Covid-19 Dashboard </span>
 	 </a>
 
 	<a href="/api/fill_data"><button type="button" class="btn btn-outline-success"><span style="padding: 1rem 0.6rem 0.5rem 0.21rem" >Refresh Statistics</span><i class="fa fa-refresh" aria-hidden="true"></i></button></a>

@@ -29,10 +29,10 @@
 			<table class="table  table-hover">
 				<thead>
 					<tr>
-						<th onclick="SortTableCountry()"><h6 style="width: fit-content; display:inline-block;">Country</h6></th>
-						<th onclick="SortTableCountryCode()" class="text-center"><h6>Country Code</h6></th>
-						<th onclick="SortTablePopulation()"><h6>Population</h6></th>
-						<th><h6>Actions</h6></th>
+						<th onclick="SortTableCountry()"><h6  style="width: fit-content; display:inline-block;">Country</h6> <i class="fa fa-sort" aria-hidden="true"></i></th>
+						<th onclick="SortTableCountryCode()" class=""><h6 style="width: fit-content; display:inline-block;">Country Code</h6><i class="fa fa-sort" aria-hidden="true"></i></th>
+						<th class="" onclick="SortTablePopulation()"><h6 style="width: fit-content; display:inline-block;">Population</h6><i class="fa fa-sort" aria-hidden="true"></i></th>
+						<th class="text-center"><h6>Action</h6></th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -65,7 +65,7 @@
 	function BuildTable(array) {
 		tbody.innerHTML=" ";
 		array.forEach(element => {
-		tbody.insertAdjacentHTML("beforeend",`<tr><td ><a href="world/c/${element.country_code}"><h6>${element.country}</h6></a></td><td class='text-center'><h6>${element.country_code}</h6></td><td class=" text-primary text-lg-left"><h6>${element.population.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h6></td><td class="text-center"><a href="world/c/${element.country_code}/edit" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a></td></tr>`);
+		tbody.insertAdjacentHTML("beforeend",`<tr><td ><a href="world/c/${element.country_code}"><h6>${element.country}</h6></a></td><td class='text-left'><h6>${element.country_code}</h6></td><td class=" text-primary  text-lg-left"><h6>${element.population.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h6></td><td class="text-center"><a href="world/c/${element.country_code}/edit" class="edit" ><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a></td></tr>`);
 	});
 
 // 	if(tbodyNode.lengt > 0){
@@ -121,6 +121,7 @@
 	document.addEventListener(onload,BuildTable(array));
 	if(tbody.childNodes == 0){
 	}
+
 
 
 
@@ -193,6 +194,7 @@ chart.zoomControl.valign = "top";
 
 var arrayOfCases ={!! json_encode($cases->toArray()) !!};
 var arrayData=[];
+
 var arrayIncluded=[];
 
 
@@ -209,9 +211,7 @@ arrayData.push({
 	trecovred:element.TotalRecovered,
 	nrecovred:element.NewRecovered
 });
-
-//arrayIncluded.push(element.CountryCode);
-	
+arrayIncluded.push(element.CountryCode);
 });
 
 console.log(arrayData);
@@ -222,7 +222,33 @@ polygonSeries.data = arrayData;
 // excludes Antarctica
 polygonSeries.exclude =['AQ'] ;
 
+let zoomTo = arrayIncluded;
 
+chart.events.on("ready", function(ev) {
+  // Init extremes
+  var north, south, west, east;
+
+  // Find extreme coordinates for all pre-zoom countries
+  for(let i = 0; i < zoomTo.length; i++) {
+    var country = polygonSeries.getPolygonById(zoomTo[i]);
+    if (north == undefined || (country.north > north)) {
+      north = country.north;
+    }
+    if (south == undefined || (country.south < south)) {
+      south = country.south;
+    }
+    if (west == undefined || (country.west < west)) {
+      west = country.west;
+    }
+    if (east == undefined || (country.east > east)) {
+      east = country.east;
+    }
+    country.isActive = true
+  }
+
+  // Pre-zoom
+  chart.zoomToRectangle(north, east, south, west, 1, true);
+});
 
 </script>
 
