@@ -54,9 +54,9 @@
 	var array =  {!! json_encode($data->toArray()) !!};
 	var tbody = document.getElementById('tbody');
 	var tbodyNode = document.getElementsByTagName('tbody');
-	let isAce =true;
-	let isAceP =true;
-	let isAceC =true;
+	let isAce =false;
+	let isAceP =false;
+	let isAceC =false;
 	console.log(tbodyNode);
 
 	function numberWithCommas(x) {
